@@ -1,6 +1,7 @@
 package mx.edu.utez.unidad3.modules.auth;
 
 import mx.edu.utez.unidad3.modules.auth.dto.LoginRequestDTO;
+import mx.edu.utez.unidad3.modules.user.BeanUser;
 import mx.edu.utez.unidad3.utils.APIResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,12 @@ public class AuthController {
     @PostMapping("")
     public ResponseEntity<APIResponse> doLogin(@RequestBody LoginRequestDTO payload) {
         APIResponse response = authService.doLogin(payload);
+        return new ResponseEntity<>(response, response.getStatus());
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<APIResponse> doRegister(@RequestBody BeanUser payload) {
+        APIResponse response = authService.register(payload);
         return new ResponseEntity<>(response, response.getStatus());
     }
 }
