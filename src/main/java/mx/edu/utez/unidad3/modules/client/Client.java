@@ -2,6 +2,7 @@ package mx.edu.utez.unidad3.modules.client;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -14,40 +15,38 @@ import java.util.List;
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id" , nullable = false)
     private Long id;
 
-    @Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚÑñ][\sa-zA-ZáéíóúÁÉÍÓÚÑñ]{2,}$", message = "Solo se aceptan letras")
-    @NotNull(message = "Favor de ingresar los datos en el campo")
-    @NotBlank(message = "Favor de no dejar los datos en Blanco")
+
+    @Pattern(regexp = "^[a-zA-záéíóúÁÉÍÓÚñÑ][\sa-zA-záéíóúÁÉÍÓÚñÑ]{3,}$", message = "Solo se aceptan letras")
+    @NotNull(message = "Ingresa los datos")
+    @NotBlank(message = "No puedes dejar este campo vacio")
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚÑñ][\sa-zA-ZáéíóúÁÉÍÓÚÑñ]{2,}$", message = "Solo se aceptan letras")
-    @NotNull(message = "Favor de ingresar los datos en el campo")
-    @NotBlank(message = "Favor de no dejar los datos en Blanco")
     @Column(name = "phone", nullable = false)
     private String phone;
 
-    @Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚÑñ][\sa-zA-ZáéíóúÁÉÍÓÚÑñ]{2,}$", message = "Solo se aceptan letras")
-    @NotNull(message = "Favor de ingresar los datos en el campo")
-    @NotBlank(message = "Favor de no dejar los datos en Blanco")
+    @Email
+    @Pattern(regexp = "^[a-zA-záéíóúÁÉÍÓÚñÑ][\sa-zA-záéíóúÁÉÍÓÚñÑ]{3,}$", message = "Coloca un correo valido")
+    @NotNull(message = "Ingresa los datos de correo")
+    @NotBlank(message = "No puedes dejar este campo vacio")
     @Column(name = "email", nullable = false)
     private String email;
 
     @OneToMany(mappedBy = "client")
     @JsonIgnore
-    private List<Warehouse> warehouses;
+    private List<Warehouse> warehouseList;
 
-    public Client() {
-    }
+    public Client(){}
 
-    public Client(Long id, String name, String phone, String email, List<Warehouse> warehouses) {
+    public Client(Long id, String name, String phone, String email, List<Warehouse> warehouseList) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.warehouses = warehouses;
+        this.warehouseList = warehouseList;
     }
 
     public Long getId() {
@@ -82,11 +81,11 @@ public class Client {
         this.email = email;
     }
 
-    public List<Warehouse> getWarehouses() {
-        return warehouses;
+    public List<Warehouse> getWarehouseList() {
+        return warehouseList;
     }
 
-    public void setWarehouses(List<Warehouse> warehouses) {
-        this.warehouses = warehouses;
+    public void setWarehouseList(List<Warehouse> warehouseList) {
+        this.warehouseList = warehouseList;
     }
 }
