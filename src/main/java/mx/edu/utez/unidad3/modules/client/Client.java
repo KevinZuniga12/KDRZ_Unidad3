@@ -25,6 +25,9 @@ public class Client {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Pattern(regexp = "^?[-.\\s]?\\d{3,4}[-.\\s]?\\d{4}$\n", message = "Solo se aceptan numeros")
+    @NotNull(message = "Ingresa los datos")
+    @NotBlank(message = "No puedes dejar este campo vacio")
     @Column(name = "phone", nullable = false)
     private String phone;
 

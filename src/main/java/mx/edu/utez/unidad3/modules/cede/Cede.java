@@ -2,6 +2,9 @@ package mx.edu.utez.unidad3.modules.cede;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import mx.edu.utez.unidad3.modules.warehouse.Warehouse;
 
 import java.util.List;
@@ -14,12 +17,20 @@ public class Cede {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @NotNull(message = "Ingresa los datos")
+    @NotBlank(message = "No puedes dejar este campo vacio")
     @Column(name = "clave", nullable = false)
     private String clave;
 
+    @Pattern(regexp = "^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(?:[\\s-][A-ZÁÉÍÓÚÑa-záéíóúñ]+)*$", message = "Solo se aceptan letras")
+    @NotNull(message = "Ingresa los datos")
+    @NotBlank(message = "No puedes dejar este campo vacio")
     @Column(name = "state", nullable = false)
     private String state;
 
+    @Pattern(regexp = "^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(?:[\\s-][A-ZÁÉÍÓÚÑa-záéíóúñ]+)*$\n", message = "Solo se aceptan letras")
+    @NotNull(message = "Ingresa los datos")
+    @NotBlank(message = "No puedes dejar este campo vacio")
     @Column(name = "city", nullable = false)
     private String city;
 
