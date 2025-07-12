@@ -2,6 +2,9 @@ package mx.edu.utez.unidad3.modules.client;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import mx.edu.utez.unidad3.modules.warehouse.Warehouse;
 
 import java.util.List;
@@ -14,12 +17,21 @@ public class Client {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚÑñ][\sa-zA-ZáéíóúÁÉÍÓÚÑñ]{2,}$", message = "Solo se aceptan letras")
+    @NotNull(message = "Favor de ingresar los datos en el campo")
+    @NotBlank(message = "Favor de no dejar los datos en Blanco")
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚÑñ][\sa-zA-ZáéíóúÁÉÍÓÚÑñ]{2,}$", message = "Solo se aceptan letras")
+    @NotNull(message = "Favor de ingresar los datos en el campo")
+    @NotBlank(message = "Favor de no dejar los datos en Blanco")
     @Column(name = "phone", nullable = false)
     private String phone;
 
+    @Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚÑñ][\sa-zA-ZáéíóúÁÉÍÓÚÑñ]{2,}$", message = "Solo se aceptan letras")
+    @NotNull(message = "Favor de ingresar los datos en el campo")
+    @NotBlank(message = "Favor de no dejar los datos en Blanco")
     @Column(name = "email", nullable = false)
     private String email;
 
